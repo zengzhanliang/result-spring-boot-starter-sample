@@ -1,10 +1,8 @@
 package com.zeng.result.controller;
 
 import com.zeng.annotation.NonResultCovert;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
+import com.zeng.result.model.Args;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * 测试类
@@ -44,5 +42,17 @@ public class TestController {
         int a = 1/0;
 
         return "sss" + a;
+    }
+
+    @RequestMapping(value = "/testArgs",method = RequestMethod.GET)
+    @ResponseBody
+    public Object testArgs( String id, String name ) {
+        return "id : " + id + ", name: " + name;
+    }
+
+    @RequestMapping(value = "/testArgsObject",method = RequestMethod.POST)
+    @ResponseBody
+    public Object testArgsObject(@RequestBody Args args) {
+        return "id : " + args.getId() + ", name: " + args.getName();
     }
 }
